@@ -1,0 +1,44 @@
+<template>
+  <fieldset>
+    <legend>Step 3 of 3</legend>
+    Do you have a valid United States driver license?
+    <div class="form-group">
+      <label for="candriveyes" class="radio-inline">
+        <input type="radio" id="candriveyes" name="candrive" value.bind="yes" 
+        checked.bind="$parent.employmentForm.candrive" />
+        Yes
+      </label>
+      <label for="candrivenno" class="radio-inline">
+        <input type="radio" id="candriveno" name="candrive" value.bind="no"
+        checked.bind="$parent.employmentForm.candrive" />
+        No
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="movingViolations">Please list any moving violations in the last 3
+        years:</label><br/>
+      <textarea id="movingViolations" class="form-control"
+        name="movingViolations" cols="50"
+        model.bind="employmentForm.movingViolations"></textarea>
+    </div>
+    Have you ever been convicted of a felony?
+    <div class="form-group">
+      <label for="felonyyes" class="radio-inline">
+        <input type="radio" id="felonyyes" name="felony"
+        value.bind="yes" checked.bind="$parent.employmentForm.felony" />
+        Yes
+      </label>
+      <label for="felonyno" class="radio-inline">
+        <input type="radio" id="felonyno" name="felony"
+        value.bind="no" checked.bind="$parent.employmentForm.felony" />
+        No
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="felonyDescr">If yes, explain:</label><br/>
+      <textarea id="felonyDescr" class="form-control" name="felonyDescr"
+        cols="50" model.bind="employmentForm.felonyDescr"></textarea>
+    </div>
+  </fieldset>
+</template>
+

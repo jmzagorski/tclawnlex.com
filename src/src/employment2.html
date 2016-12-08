@@ -1,0 +1,21 @@
+<template>
+  <fieldset>
+    <legend>Step 2 of 3</legend>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email"
+        value.bind="employmentForm.email" />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="input" class="form-control" id="phone"
+        value.bind="employmentForm.phone" />
+    </div>
+    <div class="form-group">
+      <label for="experience">Please briefly describe any prior work experience:</label><br/>
+      <textarea id="experience" class="form-control" name="experience"
+        cols="50" model.bind="employmentForm.felonyDescr"></textarea>
+    </div>
+  </fieldset>
+</template>
+
