@@ -16,12 +16,11 @@ describe('the Employment module', () => {
     expect(sut.views).toContain('./employment1.html');
     expect(sut.views).toContain('./employment2.html');
     expect(sut.views).toContain('./employment3.html');
-    expect(sut.views).toContain('./employment-review.html');
   });
 
   // length minus 1 because index start at 0
   it('initiates the max property to length minus 1', () => {
-    expect(sut.max).toEqual(3);
+    expect(sut.max).toEqual(2);
   });
 
   using([

@@ -5,8 +5,7 @@ export class Employment {
     this.views = [
       './employment1.html',
       './employment2.html',
-      './employment3.html',
-      './employment-review.html'
+      './employment3.html'
     ];
 
     this.max = this.views.length - 1;
