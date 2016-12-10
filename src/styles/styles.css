@@ -53,77 +53,41 @@ section {
   margin: 12px 24px 0 6px;
 }
 
-.pictureDetail {
-  max-width: 425px;
-}
-
 /* animate page transitions */
 section.au-enter-active {
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
 }
 
-div.au-stagger {
-  /* 50ms will be applied between each successive enter operation */
-  -webkit-animation-delay: 50ms;
-  animation-delay: 50ms;
-}
-
-.card-container.au-enter {
-  opacity: 0;
-}
-
-.card-container.au-enter-active {
-  -webkit-animation: fadeIn 2s;
-  animation: fadeIn 2s;
-}
-
 .card {
   overflow: hidden;
   position: relative;
-  border: 1px solid #CCC;
-  border-radius: 8px;
-  text-align: center;
   padding: 0;
-  color: rgb(136, 172, 217);
   margin-bottom: 32px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
 }
 
 .card .content {
-  margin-top: 10px;
-}
-
-.card .content .name {
   color: white;
   text-shadow: 0 0 6px rgba(0, 0, 0, .5);
   font-size: 18px;
+  float: right;
+  margin: auto;
 }
 
-.card .header-bg {
-  /* This stretches the canvas across the entire hero unit */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  border-bottom: 1px #FFF solid;
-  border-radius: 6px 6px 0 0;
-}
-
-.card .avatar {
+.card .container {
   position: relative;
-  margin-top: 15px;
   z-index: 100;
+  float: left;
 }
 
-.card .avatar img {
+.card .container img {
   width: 300px;
   height: 300px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
   border: 2px #FFF solid;
+  float: left;
 }
 
 /* animation definitions */
@@ -173,71 +137,79 @@ div.au-stagger {
   }
 }
 
-.logo {
+a .logo {
   height: 70px;
 }
 
 .mowing{
-  background-image: url("../images/grass.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background: url("../images/grass.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   z-index: -1;
 }
 
-.grass {
-  border-image:url("../images/grass.png") 30 round;
-}
+  .mowing p {
+    line-height: 150%;
+    font-size: 1.2em;
+  }
 
-/*
- * BOOTSTRAP OVERRIDES
- */
+/***** Bootstrap Overrides ********/
 .navbar .navbar-collapse {
   text-align: center;
   padding-top: 15px;
 }
 
+.navbar-default {
+  border: none;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border-color: transparent;
+}
+
 @media (max-width: 1250px) {
   .navbar-header {
-      float: none;
+    float: none;
   }
   .navbar-left,.navbar-right {
-      float: none !important;
+    float: none !important;
   }
   .navbar-toggle {
-      display: block;
+    display: block;
   }
   .navbar-collapse {
-      box-shadow: inset 0 1px 0 white;
+    box-shadow: inset 0 1px 0 white;
   }
   .navbar-fixed-top {
-      top: 0;
-      border-width: 0 0 1px;
+    top: 0;
+    border-width: 0 0 1px;
   }
   .navbar-collapse.collapse {
-      display: none!important;
+    display: none!important;
   }
   .navbar-nav {
-      float: none!important;
-      margin-top: 7.5px;
+    float: none!important;
+    margin-top: 7.5px;
   }
   .navbar-nav>li {
-      float: none;
+    float: none;
   }
   .navbar-nav>li>a {
-      padding-top: 10px;
-      padding-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
   .collapse.in{
-      display:block !important;
+    display:block !important;
   }
 }
 
 .navbar {
-  height: 91px;
   background-color: white;
 }
 
-/* Carousel */
+/********* Carousel ************/
 .carousel-caption p {
   font-size: 20px;
   line-height: 1.4;
