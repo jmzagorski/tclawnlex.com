@@ -201,6 +201,11 @@ System.config({
       "indexof": "npm:indexof@0.0.1"
     }
   },
+  depCache: {
+    "main.js": [
+      "bootstrap"
+    ]
+  },
   bundles: {
     "app-build.js": [
       "about.html!github:systemjs/plugin-text@0.0.8.js",
@@ -209,7 +214,6 @@ System.config({
       "app.js",
       "contact.html!github:systemjs/plugin-text@0.0.8.js",
       "contact.js",
-      "employment-review.html!github:systemjs/plugin-text@0.0.8.js",
       "employment.html!github:systemjs/plugin-text@0.0.8.js",
       "employment.js",
       "employment1.html!github:systemjs/plugin-text@0.0.8.js",
@@ -316,11 +320,6 @@ System.config({
       "npm:aurelia-templating@1.1.1/aurelia-templating.js",
       "npm:jquery@2.2.4.js",
       "npm:jquery@2.2.4/dist/jquery.js"
-    ]
-  },
-  depCache: {
-    "main.js": [
-      "bootstrap"
     ]
   }
 });

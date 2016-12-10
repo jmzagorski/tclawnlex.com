@@ -45,20 +45,23 @@ gulp.task("build-css", function() {
 
 gulp.task("min-style", function() {
   return gulp.src(paths.style)
-    .pipe(changed(paths.output, {extension: ".css"}))
     .pipe(cleanCSS())
     .pipe(rename("styles.min.css"))
-    .pipe(gulp.dest("styles/"));
+    .pipe(gulp.dest(paths.styleRoot))
+    .pipe(browserSync.stream());
 });
+
 
 // this task calls the clean task (located
 // in ./clean.js), then runs the build-system
 // and build-html tasks in parallel
 // https://www.npmjs.com/package/gulp-run-sequence
 gulp.task("build", function(callback) {
+  gulp.watch(paths.style, ["min-style"]);
+
   return runSequence(
     "clean",
-    ["build-system", "build-html", "build-css", "min-style"],
+    ["build-system", "build-html", "build-css" ],
     callback
   );
 });
