@@ -57,11 +57,10 @@ gulp.task("min-style", function() {
 // and build-html tasks in parallel
 // https://www.npmjs.com/package/gulp-run-sequence
 gulp.task("build", function(callback) {
-  gulp.watch(paths.style, ["min-style"]);
 
   return runSequence(
     "clean",
-    ["build-system", "build-html", "build-css" ],
+    ["build-system", "build-html", "build-css", "min-style" ],
     callback
   );
 });
