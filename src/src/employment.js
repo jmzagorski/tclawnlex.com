@@ -10,6 +10,7 @@ export class Employment {
     this.employment = null;
     this.helpMsg = null
     this._http = http;
+    this.loading = false;
 
     http.configure(config => {
       config
@@ -19,6 +20,8 @@ export class Employment {
   }
 
   submit() {
+    this.loading = true;
+
     return this._http.fetch(sendto(), {
       method: `POST`,
       body: json(this.employment)
@@ -29,7 +32,7 @@ export class Employment {
     }).catch(err => {
       this.helpMsg = `there was an error submitting your form. ` + 
         `Please try again or contact us direct from the Contact Page`;
-      throw err;
-    });
+    })
+    .then(() => this.loading = false);
   }
 }

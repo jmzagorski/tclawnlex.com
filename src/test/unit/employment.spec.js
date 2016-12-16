@@ -38,6 +38,7 @@ describe('the Employment module', () => {
     expect(sut.view).toEqual('./employment-form.html');
     expect(sut.employment).toEqual(null);
     expect(sut.helpMsg).toEqual(null);
+    expect(sut.loading).toBeFalsy();
   });
 
   it('configures the http client with std configuration', () => {
@@ -75,6 +76,7 @@ describe('the Employment module', () => {
     sut.submit().then(() => {
       expect(http.url).toEqual('test');
       expect(http.blob.method).toEqual('POST');
+      expect(sut.loading).toBeFalsy();
       let fr = new FileReader();
       fr.addEventListener("loadend", function() {
         expect(fr.result).toEqual("{\"id\":1}");
@@ -83,6 +85,7 @@ describe('the Employment module', () => {
       fr.readAsText(http.blob.body);
     });
 
+    expect(sut.loading).toBeTruthy();
     http.resolve({ json: () => sut.employment });
   });
 
@@ -97,7 +100,7 @@ describe('the Employment module', () => {
   });
 
   it('shows a help msg when posts fails', done => {
-    sut.submit().catch(() => {
+    sut.submit().then(() => {
       expect(sut.helpMsg).toContain('there was an error submitting your form');
       expect(sut.view).toEqual('./employment-form.html');
       done();
