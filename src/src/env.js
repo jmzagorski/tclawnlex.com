@@ -1,15 +1,15 @@
-//removeIf(production)-->
+//removeIf(production)
 import {PLATFORM} from "aurelia-pal";
-//endRemoveIf(production)-->
+//endRemoveIf(production)
 
 export function sendto() {
-  //removeIf(production)-->
+  //removeIf(production)
   const isDev = (PLATFORM.location.host.match(/tclawnlex/i) ? false : true);
 
   if (isDev) {
     return 'dssrun@yahoo.com'
   } 
-  //endRemoveIf(production)-->
+  //endRemoveIf(production)
 
   return 'tclawncarellc@gmail.com'
 }
