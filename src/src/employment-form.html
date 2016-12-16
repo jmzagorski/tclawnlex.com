@@ -15,7 +15,7 @@
             <span class="input-group-addon">
               <i class="glyphicon glyphicon-user"></i></span>
             <input id="fullname" name="fullname" placeholder="Full Name"
-            class="form-control" type="text" value.bind="employment.fullName"/>
+            class="form-control" type="text" value.bind="canidate.fullName"/>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
               <i class="glyphicon glyphicon-gift"></i>
             </span>
             <input id="age" name="age" class="form-control" placeholder="Age"
-            type="number" value.bind="employment.age" />
+            type="number" value.bind="canidate.age" />
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
               <i class="glyphicon glyphicon-home"></i>
             </span>
             <input id="city" name="city" placeholder="City"
-            class="form-control" type="text" value.bind="employment.city" />
+            class="form-control" type="text" value.bind="canidate.city" />
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
               <i class="glyphicon glyphicon-earphone"></i>
             </span>
             <input id="phone" name="phone" placeholder="859-555-5555"
-            class="form-control" type="text" value.bind="employment.phone"/>
+            class="form-control" type="text" value.bind="canidate.phone"/>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@
               <i class="glyphicon glyphicon-envelope"></i>
             </span>
             <input id="email" name="email" placeholder="E-Mail Address" 
-            class="form-control" type="email" value.bind="employment.email"/>
+            class="form-control" type="email" value.bind="canidate.email"/>
           </div>
         </div>
       </div>
@@ -79,14 +79,14 @@
         <div class="col-md-4">
           <div class="radio-inline">
             <label>
-              <input name="citizen" type="radio" value.bind="yes" 
-              checked.bind="employment.citizen" /> Yes
+              <input name="citizen" type="radio" value="yes" 
+              checked.bind="canidate.citizen" /> Yes
             </label>
           </div>
           <div class="radio-inline">
             <label>
-              <input name="citizen" type="radio" value.bind="no"
-              checked.bind="employment.citizen" /> No
+              <input name="citizen" type="radio" value="no"
+              checked.bind="canidate.citizen" /> No
             </label>
           </div>
         </div>
@@ -100,14 +100,14 @@
         <div class="col-md-4">
           <div class="radio-inline">
             <label>
-              <input name="canwork" type="radio" value.bind="yes"
-              checked.bind="employment.canwork" /> Yes
+              <input name="canwork" type="radio" value="yes"
+              checked.bind="canidate.canWork" /> Yes
             </label>
           </div>
           <div class="radio-inline">
             <label>
-              <input name="canwork" type="radio" value.bind="no"
-              checked.bind="employment.canwork" /> No
+              <input name="canwork" type="radio" value="no"
+              checked.bind="canidate.canWork" /> No
             </label>
           </div>
         </div>
@@ -121,13 +121,13 @@
           <div class="radio-inline">
             <label>
               <input name="candrive" type="radio" value="yes"
-              checked.bind="employment.candrive" /> Yes
+              checked.bind="canidate.canDrive" /> Yes
             </label>
           </div>
           <div class="radio-inline">
             <label>
-              <input name="candrive" type="radio" value.bind="no"
-              checked.bind="employment.candrive" /> No
+              <input name="candrive" type="radio" value="no"
+              checked.bind="canidate.canDrive" /> No
             </label>
           </div>
         </div>
@@ -140,14 +140,14 @@
         <div class="col-md-4">
           <div class="radio-inline">
             <label>
-              <input name="hasfelony" type="radio" value.bind="yes"
-              checked.bind="employment.hasfelony" /> Yes
+              <input name="hasfelony" type="radio" value="yes"
+              checked.bind="canidate.hasFelony" /> Yes
             </label>
           </div>
           <div class="radio-inline">
             <label>
-              <input name="hasfelony" type="radio" value.bind="no"
-              checked.bind="employment.hasfelony" /> No
+              <input name="hasfelony" type="radio" value="no"
+              checked.bind="canidate.hasFelony" /> No
             </label>
           </div>
         </div>
@@ -164,7 +164,7 @@
             </span>
             <textarea id="felony-explain" class="form-control"
               name="felony-explain" placeholder="Felonies" 
-              value.bind="employment.felonyDescr"></textarea>
+              value.bind="canidate.felonies"></textarea>
           </div>
         </div>
       </div>
@@ -180,7 +180,7 @@
             </span>
             <textarea id="moving-violations" class="form-control"
               name="moving-violation" placeholder="Moving Violations"
-              value.bind="employment.movingViolations"></textarea>
+              value.bind="canidate.movingViolations"></textarea>
           </div>
         </div>
       </div>
@@ -195,7 +195,7 @@
               <i class="glyphicon glyphicon-tree-conifer"></i>
             </span>
             <textarea id="experience" class="form-control" name="experience"
-              placeholder="Work Experience" value.bind="employment.experience">
+              placeholder="Work Experience" value.bind="canidate.experience">
             </textarea>
           </div>
           <span class="text-muted">

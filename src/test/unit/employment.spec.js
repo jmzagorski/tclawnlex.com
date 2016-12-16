@@ -1,6 +1,7 @@
 import {Employment} from '../../src/employment';
 import using from 'jasmine-data-provider';
 import * as env from '../../src/env';
+import Canidate from '../../src/canidate';
 
 class HttpStub {
   constructor() {
@@ -36,7 +37,7 @@ describe('the Employment module', () => {
 
   it('initiates the current view model variables', () => {
     expect(sut.view).toEqual('./employment-form.html');
-    expect(sut.employment).toEqual(null);
+    expect(sut.canidate).toEqual(new Canidate());
     expect(sut.helpMsg).toEqual(null);
     expect(sut.loading).toBeFalsy();
   });
@@ -69,17 +70,33 @@ describe('the Employment module', () => {
   });
 
   it('fetches with post data', done => {
+    const expectJson = '{"fullName":"tom","age":2,"city":"lex","phone":"1900",' + 
+      '"email":"@.com","citizen":"yes","canWork":"no","canDrive":"yes",' + 
+      '"hasFelony":"yes","felonies":"steal","movingViolations":"some",' +
+      '"experience":"none"}';
+    sut.canidate.fullName = 'tom';
+    sut.canidate.age = 2;
+    sut.canidate.city = 'lex';
+    sut.canidate.phone = '1900';
+    sut.canidate.email = '@.com';
+    sut.canidate.citizen = 'yes';
+    sut.canidate.canWork = 'no';
+    sut.canidate.canDrive = 'yes';
+    sut.canidate.hasFelony = 'yes';
+    sut.canidate.felonies = 'steal';
+    sut.canidate.movingViolations = 'some';
+    sut.canidate.experience = 'none';
+
     spyOn(env, "sendto").and.returnValue('test');
-    sut.employment = { id: 1 };
-    http.itemStub = sut.employment;
+    http.itemStub = sut.canidate;
 
     sut.submit().then(() => {
       expect(http.url).toEqual('test');
       expect(http.blob.method).toEqual('POST');
       expect(sut.loading).toBeFalsy();
       let fr = new FileReader();
-      fr.addEventListener("loadend", function() {
-        expect(fr.result).toEqual("{\"id\":1}");
+      fr.addEventListener('loadend', function() {
+        expect(fr.result).toEqual(expectJson);
         done();
       });
       fr.readAsText(http.blob.body);

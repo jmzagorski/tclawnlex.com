@@ -1,16 +1,17 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient, json} from 'aurelia-fetch-client';
 import { sendto } from './env';
+import Canidate from './canidate.js';
 import 'fetch';
 
 @inject(HttpClient)
 export class Employment {
   constructor(http) {
     this.view = "./employment-form.html";
-    this.employment = null;
     this.helpMsg = null
     this._http = http;
     this.loading = false;
+    this.canidate = new Canidate();
 
     http.configure(config => {
       config
@@ -24,7 +25,7 @@ export class Employment {
 
     return this._http.fetch(sendto(), {
       method: `POST`,
-      body: json(this.employment)
+      body: json(this.canidate)
     }).then(response => response.json())
     .then(() => {
       this.helpMsg = null;
