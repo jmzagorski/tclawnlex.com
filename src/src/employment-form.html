@@ -54,7 +54,8 @@
               <i class="glyphicon glyphicon-earphone"></i>
             </span>
             <input id="phone" name="phone" placeholder="859-555-5555"
-            class="form-control" type="text" value.bind="canidate.phone"/>
+            class="form-control" type="text" value.bind="canidate.phone |
+            phoneFormat"/>
           </div>
         </div>
       </div>

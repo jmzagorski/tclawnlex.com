@@ -5,7 +5,9 @@ export function configure(aurelia) {
     .standardConfiguration()
     .developmentLogging();
 
-  aurelia.use.plugin('aurelia-animator-css');
+  aurelia.use
+    .plugin('aurelia-animator-css')
+    .feature('resources');
 
   aurelia.start().then(() => aurelia.setRoot());
 }
