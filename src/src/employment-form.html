@@ -1,0 +1,223 @@
+<template>
+  <form id="contactform" class="form-horizontal">
+    <input type="hidden" name="_subject" value="TCLawn Care Employment" />
+    <input type="text" name="_gotcha" style="display:none" />
+    <fieldset>
+      <legend>Contact Us Today!</legend>
+
+      <div class="form-group">
+        <label form="fullname" class="col-md-4 control-label">
+          Full Name
+        </label>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-user"></i></span>
+            <input id="fullname" name="fullname" placeholder="Full Name"
+            class="form-control" type="text" value.bind="employment.fullName"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="age" class="col-md-4 control-label">Age</label>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-gift"></i>
+            </span>
+            <input id="age" name="age" class="form-control" placeholder="Age"
+            type="number" value.bind="employment.age" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="city" class="col-md-4 control-label">Kentucky City</label>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-home"></i>
+            </span>
+            <input id="city" name="city" placeholder="City"
+            class="form-control" type="text" value.bind="employment.city" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone" class="col-md-4 control-label">Phone</label>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-earphone"></i>
+            </span>
+            <input id="phone" name="phone" placeholder="859-555-5555"
+            class="form-control" type="text" value.bind="employment.phone"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="col-md-4 control-label">E-Mail</label>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-envelope"></i>
+            </span>
+            <input id="email" name="email" placeholder="E-Mail Address" 
+            class="form-control" type="email" value.bind="employment.email"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">
+          Are you an American Citizen?
+        </label>
+        <div class="col-md-4">
+          <div class="radio-inline">
+            <label>
+              <input name="citizen" type="radio" value.bind="yes" 
+              checked.bind="employment.citizen" /> Yes
+            </label>
+          </div>
+          <div class="radio-inline">
+            <label>
+              <input name="citizen" type="radio" value.bind="no"
+              checked.bind="employment.citizen" /> No
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">
+          Are you authorized to <span class="text-primary">CURRENTLY </span>
+          work in the United States
+        </label>
+        <div class="col-md-4">
+          <div class="radio-inline">
+            <label>
+              <input name="canwork" type="radio" value.bind="yes"
+              checked.bind="employment.canwork" /> Yes
+            </label>
+          </div>
+          <div class="radio-inline">
+            <label>
+              <input name="canwork" type="radio" value.bind="no"
+              checked.bind="employment.canwork" /> No
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">
+          Do you have a valid United States driver license?
+        </label>
+        <div class="col-md-4">
+          <div class="radio-inline">
+            <label>
+              <input name="candrive" type="radio" value="yes"
+              checked.bind="employment.candrive" /> Yes
+            </label>
+          </div>
+          <div class="radio-inline">
+            <label>
+              <input name="candrive" type="radio" value.bind="no"
+              checked.bind="employment.candrive" /> No
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">
+          Have you ever been convicted of a felony?
+        </label>
+        <div class="col-md-4">
+          <div class="radio-inline">
+            <label>
+              <input name="hasfelony" type="radio" value.bind="yes"
+              checked.bind="employment.hasfelony" /> Yes
+            </label>
+          </div>
+          <div class="radio-inline">
+            <label>
+              <input name="hasfelony" type="radio" value.bind="no"
+              checked.bind="employment.hasfelony" /> No
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="felony-explain" class="col-md-4 control-label">
+          If yes, please explain
+        </label>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-pencil"></i>
+            </span>
+            <textarea id="felony-explain" class="form-control"
+              name="felony-explain" placeholder="Felonies" 
+              value.bind="employment.felonyDescr"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="moving-violations" class="col-md-4 control-label">
+          Please list any moving violations in the last 3 years
+        </label>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-road"></i>
+            </span>
+            <textarea id="moving-violations" class="form-control"
+              name="moving-violation" placeholder="Moving Violations"
+              value.bind="employment.movingViolations"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="experience" class="col-md-4 control-label">
+          Please briefly describe any prior work experience
+        </label>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-tree-conifer"></i>
+            </span>
+            <textarea id="experience" class="form-control" name="experience"
+              placeholder="Work Experience" value.bind="employment.experience">
+            </textarea>
+          </div>
+          <span class="text-muted">
+            **You can drag the bottom right corner of the larger text areas
+            to make more room to type
+          </span>
+        </div>
+      </div>
+
+      <div show.bind="helpMsg" class="alert alert-danger" role="alert" id="success_message">
+        Error <i class="glyphicon glyphicon-thumbs-down"></i>
+        ${helpMsg}
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-success" click.trigger="submit()">
+            Send <span class="glyphicon glyphicon-send"></span>
+          </button>
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+</template>

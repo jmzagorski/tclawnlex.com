@@ -1,38 +1,108 @@
 import {Employment} from '../../src/employment';
 import using from 'jasmine-data-provider';
+import * as env from '../../src/env';
+
+class HttpStub {
+  constructor() {
+    this.url = null;
+    this.config = null;
+    this.resolve = null;
+    this.reject = null;
+  }
+
+  fetch(url, blob) {
+    this.url = url;
+    this.blob = blob;
+    let promise = new Promise((resolve, reject) => {
+      this.resolve = resolve;
+      this.reject = reject;
+    });
+    return promise;
+  }
+
+  configure(func) {
+    this.config = func;
+  }
+}
 
 describe('the Employment module', () => {
   var sut;
+  var http;
 
   beforeEach(() => {
-    sut = new Employment();
+    http = new HttpStub();
+    sut = new Employment(http);
   });
 
-  it('initiates the current property to zero', () => {
-    expect(sut.current).toEqual(0);
+  it('initiates the current view model variables', () => {
+    expect(sut.view).toEqual('./employment-form.html');
+    expect(sut.employment).toEqual(null);
+    expect(sut.helpMsg).toEqual(null);
   });
 
-  it('initiates all views', () => {
-    expect(sut.views).toContain('./employment1.html');
-    expect(sut.views).toContain('./employment2.html');
-    expect(sut.views).toContain('./employment3.html');
+  it('configures the http client with std configuration', () => {
+    let useStdConfig = false;
+    let config = {
+      useStandardConfiguration: () => {
+        useStdConfig = true;
+        return config;
+      },
+      withBaseUrl: () => {}
+    };
+
+    http.config(config);
+
+    expect(useStdConfig).toBeTruthy();
   });
 
-  // length minus 1 because index start at 0
-  it('initiates the max property to length minus 1', () => {
-    expect(sut.max).toEqual(2);
+  it('configures the http client with a base url', () => {
+    let baseUrl = null;
+    let config = {
+      useStandardConfiguration: () => config,
+      withBaseUrl: (url) => baseUrl = url
+    };
+
+    http.config(config);
+
+    expect(baseUrl).toEqual('https:////formspree.io/');
   });
 
-  using([
-    { step: 1, current: 2, expect: 3 },
-    { step: -1, current: 2, expect: 1 },
-  ], data => {
-    it('increments/decrements the current step', () => {
-      sut.current = data.current;
+  it('fetches with post data', done => {
+    spyOn(env, "sendto").and.returnValue('test');
+    sut.employment = { id: 1 };
+    http.itemStub = sut.employment;
 
-      sut.next(data.step);
+    sut.submit().then(() => {
+      expect(http.url).toEqual('test');
+      expect(http.blob.method).toEqual('POST');
+      let fr = new FileReader();
+      fr.addEventListener("loadend", function() {
+        expect(fr.result).toEqual("{\"id\":1}");
+        done();
+      });
+      fr.readAsText(http.blob.body);
+    });
 
-      expect(sut.current).toEqual(data.expect);
-    })
+    http.resolve({ json: () => sut.employment });
+  });
+
+  it('successfully posts the data', done => {
+    sut.submit().then(() => {
+      expect(sut.helpMsg).toEqual(null);
+      expect(sut.view).toEqual('./thanks.html');
+      done();
+    });
+
+    http.resolve({ json: () => {} });
+  });
+
+  it('shows a help msg when posts fails', done => {
+    sut.submit().catch(() => {
+      expect(sut.helpMsg).toContain('there was an error submitting your form');
+      expect(sut.view).toEqual('./employment-form.html');
+      done();
+    });
+
+    http.reject({});
   });
 });

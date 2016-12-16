@@ -1,22 +1,5 @@
 <template>
   <section class="au-animate">
-    <div class="col-md-offset-4 col-md-4">
-      <form action="TODO">
-        <h2>
-          Please fill out the form below 
-        </h2>
-        <compose view.bind="views[current]" model.bind="employmentForm">
-      </form>
-      <button class="btn btn-primary" type="button" show.bind="current!==0"
-        click.delegate="next(-1)">
-        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-      </button>
-      <button class="btn btn-primary" type="button"
-        show.bind="current!==max" click.delegate="next(1)">
-        <i class="fa fa-arrow-right" aria-hidden="true"></i>
-      </button>
-      <input type="submit" class="btn btn-success"
-        show.bind="current===max" />
-    </div>
+    <compose view.bind="view"></compose>
   </section>
 </template>
