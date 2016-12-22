@@ -1,0 +1,9 @@
+<template bindable="value,inline,name">
+  <div class="${inline ? 'radio-inline' : 'radio'}"
+    repeat.for="opt of [['Yes', true], ['No', false]]">
+    <label>
+      <input name="${name}" type="radio" model.bind="opt[1]"
+      checked.bind="value"/> ${opt[0]}
+    </label>
+  </div>
+</template>

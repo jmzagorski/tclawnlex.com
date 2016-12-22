@@ -1,6 +1,6 @@
 <template>
   <div show.bind="loading" class="loader"></div>
-  <form id="contactform" class="form-horizontal">
+  <form id="contactform" class="form-horizontal" submit.delegate="submit()">
     <input type="hidden" name="_subject" value="TCLawn Care Employment" />
     <input type="text" name="_gotcha" style="display:none" />
     <fieldset>
@@ -54,8 +54,7 @@
               <i class="glyphicon glyphicon-earphone"></i>
             </span>
             <input id="phone" name="phone" placeholder="859-555-5555"
-            class="form-control" type="text" value.bind="canidate.phone |
-            phoneFormat"/>
+            class="form-control" type="text" value.bind="canidate.phone"/>
           </div>
         </div>
       </div>
@@ -78,18 +77,9 @@
           Are you an American Citizen?
         </label>
         <div class="col-md-4">
-          <div class="radio-inline">
-            <label>
-              <input name="citizen" type="radio" value="yes" 
-              checked.bind="canidate.citizen" /> Yes
-            </label>
-          </div>
-          <div class="radio-inline">
-            <label>
-              <input name="citizen" type="radio" value="no"
-              checked.bind="canidate.citizen" /> No
-            </label>
-          </div>
+          <yes-no inline="true" name="citizen"
+            value.two-way="canidate.citizen">
+          </yes-no>
         </div>
       </div>
 
@@ -99,18 +89,9 @@
           work in the United States
         </label>
         <div class="col-md-4">
-          <div class="radio-inline">
-            <label>
-              <input name="canwork" type="radio" value="yes"
-              checked.bind="canidate.canWork" /> Yes
-            </label>
-          </div>
-          <div class="radio-inline">
-            <label>
-              <input name="canwork" type="radio" value="no"
-              checked.bind="canidate.canWork" /> No
-            </label>
-          </div>
+          <yes-no inline="true" name="canwork"
+            value.two-way="canidate.canWork">
+          </yes-no>
         </div>
       </div>
 
@@ -119,18 +100,9 @@
           Do you have a valid United States driver license?
         </label>
         <div class="col-md-4">
-          <div class="radio-inline">
-            <label>
-              <input name="candrive" type="radio" value="yes"
-              checked.bind="canidate.canDrive" /> Yes
-            </label>
-          </div>
-          <div class="radio-inline">
-            <label>
-              <input name="candrive" type="radio" value="no"
-              checked.bind="canidate.canDrive" /> No
-            </label>
-          </div>
+          <yes-no inline="true" name="candrive"
+            value.two-way="canidate.canDrive">
+          </yes-no>
         </div>
       </div>
 
@@ -139,18 +111,9 @@
           Have you ever been convicted of a felony?
         </label>
         <div class="col-md-4">
-          <div class="radio-inline">
-            <label>
-              <input name="hasfelony" type="radio" value="yes"
-              checked.bind="canidate.hasFelony" /> Yes
-            </label>
-          </div>
-          <div class="radio-inline">
-            <label>
-              <input name="hasfelony" type="radio" value="no"
-              checked.bind="canidate.hasFelony" /> No
-            </label>
-          </div>
+          <yes-no inline="true" name="hasFelony"
+            value.two-way="canidate.hasFelony">
+          </yes-no>
         </div>
       </div>
 
@@ -214,7 +177,7 @@
       <div class="form-group">
         <label class="col-md-4 control-label"></label>
         <div class="col-md-4">
-          <button type="button" class="btn btn-success" click.trigger="submit()">
+          <button type="submit" class="btn btn-success">
             Send <span class="glyphicon glyphicon-send"></span>
           </button>
         </div>
