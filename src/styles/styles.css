@@ -316,21 +316,21 @@ a .logo {
 }
 
 /********* Services ************/
-.box-top{
-  background: rgb(156, 209, 121);
-  padding: 30px;
-  color: #fff;
+.service {
+  border-top: 3px solid rgb(156, 209, 121);
+  margin-right: 5px;
 }
-.box-top h2{
+
+.box-top h2 {
   font-size: 16px;
   text-transform: uppercase;
   margin-bottom: 45px;
+  text-align: center;
 }
+
 .box-down{
   max-width: 350px;
   margin: 0 auto;
-  border-radius: 100%;
-  background: #fff;
   margin-top: -50px;
   padding: 50px 25px 10px 25px;
 }
