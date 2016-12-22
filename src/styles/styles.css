@@ -54,10 +54,6 @@ body {
   }
 }
 
-section {
-  margin: 0 20px;
-}
-
 .navbar-nav li.loader {
   margin: 12px 24px 0 6px;
 }
@@ -333,4 +329,13 @@ a .logo {
   margin: 0 auto;
   margin-top: -50px;
   padding: 50px 25px 10px 25px;
+}
+
+.border {
+  background: url("../images/grass-border.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: -1;
 }
