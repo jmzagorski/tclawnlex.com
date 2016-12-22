@@ -12,7 +12,6 @@ var browserSync = require("browser-sync");
 var htmlmin = require("gulp-htmlmin");
 var cleanCSS = require('gulp-clean-css');
 var rename = require('gulp-rename');
-var removeCode = require('gulp-remove-code');
 
 // transpiles changed es6 files to SystemJS format
 // the plumber() call prevents "pipe breaking" caused
@@ -22,7 +21,6 @@ gulp.task("build-system", function() {
   return gulp.src(paths.source)
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(changed(paths.output, {extension: ".js"}))
-    .pipe(removeCode({ production: true }))
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(to5(assign({}, compilerOptions("systemjs"))))
     .pipe(sourcemaps.write(".", {includeContent: false, sourceRoot: "/src"}))
