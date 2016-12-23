@@ -15,7 +15,8 @@
             <span class="input-group-addon">
               <i class="glyphicon glyphicon-user"></i></span>
             <input id="fullname" name="fullname" placeholder="Full Name"
-            class="form-control" type="text" value.bind="canidate.fullName"/>
+            class="form-control" type="text" value.bind="canidate.fullName &
+            validate"/>
           </div>
         </div>
       </div>
@@ -28,7 +29,7 @@
               <i class="glyphicon glyphicon-gift"></i>
             </span>
             <input id="age" name="age" class="form-control" placeholder="Age"
-            type="number" value.bind="canidate.age" />
+            type="number" value.bind="canidate.age & validate" />
           </div>
         </div>
       </div>
@@ -41,7 +42,8 @@
               <i class="glyphicon glyphicon-home"></i>
             </span>
             <input id="city" name="city" placeholder="City"
-            class="form-control" type="text" value.bind="canidate.city" />
+            class="form-control" type="text" value.bind="canidate.city &
+            validate" />
           </div>
         </div>
       </div>
@@ -54,7 +56,8 @@
               <i class="glyphicon glyphicon-earphone"></i>
             </span>
             <input id="phone" name="phone" placeholder="859-555-5555"
-            class="form-control" type="text" value.bind="canidate.phone"/>
+            class="form-control" type="text" value.bind="canidate.phone &
+            validate"/>
           </div>
         </div>
       </div>
@@ -67,7 +70,8 @@
               <i class="glyphicon glyphicon-envelope"></i>
             </span>
             <input id="email" name="email" placeholder="E-Mail Address" 
-            class="form-control" type="email" value.bind="canidate.email"/>
+            class="form-control" type="email" value.bind="canidate.email &
+            validate"/>
           </div>
         </div>
       </div>
@@ -78,7 +82,7 @@
         </label>
         <div class="col-md-4">
           <yes-no inline="true" name="citizen"
-            value.two-way="canidate.citizen">
+            value.two-way="canidate.citizen & validate">
           </yes-no>
         </div>
       </div>
@@ -90,7 +94,7 @@
         </label>
         <div class="col-md-4">
           <yes-no inline="true" name="canwork"
-            value.two-way="canidate.canWork">
+            value.two-way="canidate.canWork & validate">
           </yes-no>
         </div>
       </div>
@@ -101,7 +105,7 @@
         </label>
         <div class="col-md-4">
           <yes-no inline="true" name="candrive"
-            value.two-way="canidate.canDrive">
+            value.two-way="canidate.canDrive & validate">
           </yes-no>
         </div>
       </div>
@@ -112,7 +116,7 @@
         </label>
         <div class="col-md-4">
           <yes-no inline="true" name="hasFelony"
-            value.two-way="canidate.hasFelony">
+            value.two-way="canidate.hasFelony & validate">
           </yes-no>
         </div>
       </div>
@@ -128,7 +132,7 @@
             </span>
             <textarea id="felony-explain" class="form-control"
               name="felony-explain" placeholder="Felonies" 
-              value.bind="canidate.felonies"></textarea>
+              value.bind="canidate.felonies & validate"></textarea>
           </div>
         </div>
       </div>
@@ -144,7 +148,7 @@
             </span>
             <textarea id="moving-violations" class="form-control"
               name="moving-violation" placeholder="Moving Violations"
-              value.bind="canidate.movingViolations"></textarea>
+              value.bind="canidate.movingViolations & validate"></textarea>
           </div>
         </div>
       </div>
@@ -159,7 +163,8 @@
               <i class="glyphicon glyphicon-tree-conifer"></i>
             </span>
             <textarea id="experience" class="form-control" name="experience"
-              placeholder="Work Experience" value.bind="canidate.experience">
+              placeholder="Work Experience" value.bind="canidate.experience &
+              validate">
             </textarea>
           </div>
           <span class="text-muted">

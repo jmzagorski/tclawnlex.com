@@ -6,6 +6,7 @@ export function configure(aurelia) {
     .developmentLogging();
 
   aurelia.use
+    .plugin('aurelia-validation')
     .plugin('aurelia-animator-css')
     .feature('resources');
 

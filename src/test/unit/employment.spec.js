@@ -1,8 +1,20 @@
 import {Employment} from '../../src/employment';
-import using from 'jasmine-data-provider';
 import * as env from '../../src/env';
 import Canidate from '../../src/canidate';
-
+import {StageComponent, ComponentTester} from 'aurelia-testing';
+import {bootstrap} from 'aurelia-bootstrapper';
+import {BootstrapFormRenderer} from '../../src/resources/renderers/bootstrap-form-renderer'
+//import { Container } from 'aurelia-dependency-injection';
+//import { BindingLanguage } from 'aurelia-templating';
+//import { TemplatingBindingLanguage } from 'aurelia-templating-binding';
+import {
+  StandardValidator,
+  ValidationRules,
+  ValidationParser,
+  ValidateResult,
+  ValidationControllerFactory,
+  ValidationController
+} from 'aurelia-validation';
 class HttpStub {
   constructor() {
     this.url = null;
@@ -27,12 +39,38 @@ class HttpStub {
 }
 
 describe('the Employment module', () => {
-  var sut;
-  var http;
+  let sut;
+  let http;
+  let controller;
+  let component;
+  let validator;
+
+  beforeAll(done => {
+    component = StageComponent.withResources().inView('<div></div>').boundTo({});
+    component.bootstrap(aurelia => aurelia.use.standardConfiguration().plugin('aurelia-validation'));
+    component.create(bootstrap).then(done);
+
+    /* ValidationRules setup
+    const container = new Container();
+    container.registerInstance(BindingLanguage, container.get(TemplatingBindingLanguage));
+    const parser = container.get(ValidationParser);
+    ValidationRules.initialize(parser);
+    validator = container.get(StandardValidator);
+    */
+  });
+
+  afterAll(() => {
+    component.dispose();
+  });
 
   beforeEach(() => {
+    const factory = jasmine.setupSpy('factory', ValidationControllerFactory.prototype);
+    controller = jasmine.setupSpy('controller', ValidationController.prototype);
     http = new HttpStub();
-    sut = new Employment(http);
+    factory.createForCurrentScope.and.returnValue(controller);
+    controller.validate.and.returnValue(Promise.resolve({valid: true}));
+
+    sut = new Employment(http, factory);
   });
 
   it('initiates the current view model variables', () => {
@@ -40,6 +78,41 @@ describe('the Employment module', () => {
     expect(sut.canidate).toEqual(new Canidate());
     expect(sut.helpMsg).toEqual(null);
     expect(sut.loading).toBeFalsy();
+    expect(sut.controller).toBe(controller);
+    expect(controller.addRenderer).toHaveBeenCalledWith(new BootstrapFormRenderer());
+  });
+
+  // TODO
+  xit('sets up validation rules on the canidate', () => {
+    sut.canidate = 'anything'
+    let rules = ValidationRules.ensure('prop').email().rules;
+    validator.validateProperty(sut.canidate, 'fullName')
+      .then(results => {
+        const expected = [new ValidateResult(rules[0][0], sut.canidate, 'fullName', true, null)];
+        expected[0].id = results[0].id;
+        expect(results).toEqual(expected);
+      })
+      .then(() => {
+        sut.canidate = '';
+        rules = ValidationRules.ensure('fullName').email().rules;
+        return validator.validateProperty(obj, 'prop', rules);
+      })
+      .then(results => {
+        const expected = [new ValidateResult(rules[0][0], obj, 'prop', false, 'Prop is not a valid email.')];
+        expected[0].id = results[0].id;
+        expect(results).toEqual(expected);
+      })
+      .then(() => {
+        obj = { prop: null };
+        rules = ValidationRules.ensure('fullName').email().rules;
+        return validator.validateProperty(obj, 'prop', rules);
+      })
+      .then(results => {
+        const expected = [new ValidateResult(rules[0][0], obj, 'prop', true, null)];
+        expected[0].id = results[0].id;
+        expect(results).toEqual(expected);
+      })
+      .then(done);
   });
 
   it('configures the http client with std configuration', () => {
@@ -103,7 +176,7 @@ describe('the Employment module', () => {
     });
 
     expect(sut.loading).toBeTruthy();
-    http.resolve({ json: () => sut.employment });
+    setTimeout(() => http.resolve({ json: () => sut.canidate }));
   });
 
   it('successfully posts the data', done => {
@@ -113,7 +186,7 @@ describe('the Employment module', () => {
       done();
     });
 
-    http.resolve({ json: () => {} });
+    setTimeout(() => http.resolve({ json: () => {} }));
   });
 
   it('shows a help msg when posts fails', done => {
@@ -123,6 +196,17 @@ describe('the Employment module', () => {
       done();
     });
 
-    http.reject({});
+    setTimeout(() => http.reject());
+  });
+
+  it('adds an error to the canidate and posts', () => {
+    const errMsg = 'something';
+    controller.validate.and.returnValue(Promise.reject(errMsg));
+
+    sut.submit().catch(() => {
+      expect(sut.candidate.error).toEqual('something');
+      // if this is defined that means fetch was called
+      expect(http.resolve).toBeDefined();
+    });
   });
 });
