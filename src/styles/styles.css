@@ -1,38 +1,73 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900);
+
+html, body {
+  height: 100%;
+}
+
+/* IMPORTANT make this the same height as the navbar */
 body {
-  margin: 0;
+  margin-top: 80px;
 }
 
 .splash {
   text-align: center;
-  margin: 15% 0 0 20%;
+  margin: 15% 0 0 0;
 }
 
-a .logo {
-  height: 70px;
+/* Increase Bootstrap navbar to make logo more clear */
+
+.navbar-brand {
+  padding: 0px;
+  height: 80px;
 }
 
-.page-host {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 70px;
-  bottom: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+.navbar-brand >img {
+  height: 100%;
+  width: auto;
+  padding: 7px 15px;
+}
+
+.nav >li >a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.navbar-toggle {
+  padding: 10px;
+  margin: 25px 15px 25px 0;
+}
+
+/* END */
+
+#page-host {
+  height: 100%;
 }
 
 #welcome{
-  background: url("../images/mulch-job.jpg") no-repeat center center fixed;
+  background:  linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+    url('../images/mulch-job.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  z-index: -1;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  height: 100%
 }
 
 #welcome p {
   line-height: 150%;
   font-size: 1.5em;
+}
+
+#welcome a {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+}
+
+/* to keep away from navbar a bit */
+#welcome h2 {
+  padding-top: 15px;
 }
 
 .loader {
@@ -43,18 +78,6 @@ a .logo {
   height: 100%;
   z-index: 9999;
   background: url('../images/ripple.gif') 50% 50% no-repeat;
-}
-
-@media print {
-  .page-host {
-    position: absolute;
-    left: 10px;
-    right: 0;
-    top: 50px;
-    bottom: 0;
-    overflow-y: inherit;
-    overflow-x: inherit;
-  }
 }
 
 /* animate page transitions */
@@ -140,67 +163,17 @@ section.au-enter-active {
   }
 }
 
-/***** Bootstrap Overrides ********/
-.navbar .navbar-collapse {
-  text-align: center;
-  padding-top: 15px;
-}
-
-.navbar-default {
-  border: none;
-}
-
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-  border-color: transparent;
-}
-
 @media (max-width: 1250px) {
-  .splash {
-    margin-left: 0;
-  }
-
   .splash img {
     margin: 50% 0 0 0;
     width: 650px;
   }
-
-  .navbar-header {
-    float: none;
+  .navbar-brand>img {
+    height: 60%;
+    width: auto;
+    padding: 7px 15px;
+    margin: 25px 0px 25px 15px;
   }
-  .navbar-left,.navbar-right {
-    float: none !important;
-  }
-  .navbar-toggle {
-    display: block;
-  }
-  .navbar-collapse {
-    box-shadow: inset 0 1px 0 white;
-  }
-  .navbar-fixed-top {
-    top: 0;
-    border-width: 0 0 1px;
-  }
-  .navbar-collapse.collapse {
-    display: none!important;
-  }
-  .navbar-nav {
-    float: none!important;
-    margin-top: 7.5px;
-  }
-  .navbar-nav>li {
-    float: none;
-  }
-  .navbar-nav>li>a {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  .collapse.in{
-    display:block !important;
-  }
-}
-
-.navbar {
-  background-color: #eff1f4;
 }
 
 /********* Carousel ************/
