@@ -81,7 +81,7 @@ body {
 }
 
 /* animate page transitions */
-section.au-enter-active {
+.au-enter-active {
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
 }
