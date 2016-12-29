@@ -52,7 +52,8 @@ body {
   background-size: cover;
   font-family: 'Source Sans Pro', sans-serif;
   color: white;
-  height: 100%
+  min-height: 100%;
+  background-attachment: fixed;
 }
 
 #welcome p {
@@ -114,6 +115,20 @@ body {
   -moz-border-radius: 50%;
   border-radius: 50%;
   border: 2px #FFF solid;
+}
+
+.grass-bg {
+  background:  linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+  url('../images/grass-bg.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  min-height: 100%;
+  font-size: 1.2em;
+  background-attachment: fixed;
 }
 
 /* animation definitions */
@@ -271,8 +286,14 @@ body {
 
 /********* Services ************/
 .service {
-  border-top: 3px solid rgb(156, 209, 121);
-  margin-right: 5px;
+  border-top: 10px solid rgb(156, 209, 121);
+  margin-right: 20px;
+  color: black;
+  background-color: white;
+  margin-top: 8px;
+  height: 330px;
+  overflow: auto;
+  border-radius: 4px;
 }
 
 .box-top h2 {
@@ -280,6 +301,7 @@ body {
   text-transform: uppercase;
   margin-bottom: 45px;
   text-align: center;
+  font-weight: bold;
 }
 
 .box-down{
@@ -297,3 +319,17 @@ body {
   background-size: cover;
   z-index: -1;
 }
+
+/* If you have an uneven number o columns this will center them in the row */
+.row-centered {
+  text-align:center;
+}
+
+.col-centered {
+  display:inline-block;
+  float:none;
+  /* reset the text-align */
+  text-align:left;
+}
+
+/* End */
