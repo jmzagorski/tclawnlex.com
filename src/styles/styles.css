@@ -66,11 +66,6 @@ body {
   color: white;
 }
 
-/* to keep away from navbar a bit */
-#welcome h2 {
-  padding-top: 15px;
-}
-
 .loader {
   position: fixed;
   left: 0px;
@@ -102,13 +97,13 @@ body {
   margin: auto;
 }
 
-.card .container {
+.card .container-fluid {
   position: relative;
   z-index: 100;
   float: left;
 }
 
-.card .container img {
+.card .container-fluid img {
   width: 300px;
   height: 300px;
   -webkit-border-radius: 50%;
@@ -128,6 +123,20 @@ body {
   color: white;
   min-height: 100%;
   font-size: 1.2em;
+  background-attachment: fixed;
+}
+
+.home {
+  background:  linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+  url('../images/garden.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  min-height: 100%;
+  font-size: 1.5em;
   background-attachment: fixed;
 }
 
@@ -210,6 +219,10 @@ body {
   .carousel-caption {
     display: none
   }
+}
+
+.carousel-info {
+  background-color: white;
 }
 
 /********* Testimonials ************/
@@ -333,3 +346,7 @@ body {
 }
 
 /* End */
+
+section {
+  padding-top: 10px;
+}
