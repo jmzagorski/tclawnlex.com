@@ -163,16 +163,12 @@ section.au-enter-active {
   }
 }
 
-@media (max-width: 1250px) {
-  .splash img {
-    margin: 50% 0 0 0;
-    width: 650px;
-  }
-  .navbar-brand>img {
-    height: 60%;
+/* Menu items do not shrink into menu so navbar gets bigger hiding text */
+@media (max-width: 768px) {
+  .navbar-brand >img {
+    height: 75%;
     width: auto;
     padding: 7px 15px;
-    margin: 25px 0px 25px 15px;
   }
 }
 
