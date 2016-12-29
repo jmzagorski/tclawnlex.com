@@ -4,23 +4,7 @@ body {
 
 .splash {
   text-align: center;
-  margin: 10% 0 0 0;
-  box-sizing: border-box;
-}
-
-.splash .message {
-  font-size: 72px;
-  line-height: 72px;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 0 15px;
-  text-transform: uppercase;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.splash .fa-spinner {
-  text-align: center;
-  display: inline-block;
-  font-size: 72px;
-  margin-top: 50px;
+  margin: 15% 0 0 20%;
 }
 
 .loader {
@@ -174,6 +158,15 @@ a .logo {
 }
 
 @media (max-width: 1250px) {
+  .splash {
+    margin-left: 0;
+  }
+
+  .splash img {
+    margin: 50% 0 0 0;
+    width: 650px;
+  }
+
   .navbar-header {
     float: none;
   }
