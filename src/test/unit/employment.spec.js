@@ -1,12 +1,12 @@
-import {Employment} from '../../src/employment';
+import { Employment } from '../../src/employment';
 import * as env from '../../src/env';
 import Canidate from '../../src/canidate';
-import {StageComponent, ComponentTester} from 'aurelia-testing';
-import {bootstrap} from 'aurelia-bootstrapper';
-import {BootstrapFormRenderer} from '../../src/resources/renderers/bootstrap-form-renderer'
-//import { Container } from 'aurelia-dependency-injection';
-//import { BindingLanguage } from 'aurelia-templating';
-//import { TemplatingBindingLanguage } from 'aurelia-templating-binding';
+import { StageComponent, ComponentTester } from 'aurelia-testing';
+import { bootstrap } from 'aurelia-bootstrapper';
+import { BootstrapFormRenderer } from '../../src/resources/renderers/bootstrap-form-renderer'
+import { Container } from 'aurelia-dependency-injection';
+import { BindingLanguage } from 'aurelia-templating';
+import { TemplatingBindingLanguage } from 'aurelia-templating-binding';
 import {
   StandardValidator,
   ValidationRules,
@@ -15,6 +15,7 @@ import {
   ValidationControllerFactory,
   ValidationController
 } from 'aurelia-validation';
+
 class HttpStub {
   constructor() {
     this.url = null;
@@ -50,13 +51,11 @@ describe('the Employment module', () => {
     component.bootstrap(aurelia => aurelia.use.standardConfiguration().plugin('aurelia-validation'));
     component.create(bootstrap).then(done);
 
-    /* ValidationRules setup
     const container = new Container();
     container.registerInstance(BindingLanguage, container.get(TemplatingBindingLanguage));
     const parser = container.get(ValidationParser);
     ValidationRules.initialize(parser);
     validator = container.get(StandardValidator);
-    */
   });
 
   afterAll(() => {
@@ -75,44 +74,189 @@ describe('the Employment module', () => {
 
   it('initiates the current view model variables', () => {
     expect(sut.view).toEqual('./employment-form.html');
-    expect(sut.canidate).toEqual(new Canidate());
     expect(sut.helpMsg).toEqual(null);
     expect(sut.loading).toBeFalsy();
+    expect(sut.canidate).toEqual(new Canidate());
     expect(sut.controller).toBe(controller);
-    expect(controller.addRenderer).toHaveBeenCalledWith(new BootstrapFormRenderer());
+    expect(sut.controller.addRenderer).toHaveBeenCalledWith(new BootstrapFormRenderer());
   });
 
-  // TODO
-  xit('sets up validation rules on the canidate', () => {
-    sut.canidate = 'anything'
-    let rules = ValidationRules.ensure('prop').email().rules;
-    validator.validateProperty(sut.canidate, 'fullName')
+  it('sets validation rules on the candidate instance', done => {
+    let rules = ValidationRules.ensure('fullName').required().rules;
+    let prop = 'fullName';
+
+    validator.validateProperty(sut.canidate, prop, rules)
       .then(results => {
-        const expected = [new ValidateResult(rules[0][0], sut.canidate, 'fullName', true, null)];
-        expected[0].id = results[0].id;
-        expect(results).toEqual(expected);
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, false, 'Full Name is required.');
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
       })
       .then(() => {
-        sut.canidate = '';
-        rules = ValidationRules.ensure('fullName').email().rules;
-        return validator.validateProperty(obj, 'prop', rules);
+        prop = 'age';
+        rules = ValidationRules.ensure(prop).required().rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
       })
       .then(results => {
-        const expected = [new ValidateResult(rules[0][0], obj, 'prop', false, 'Prop is not a valid email.')];
-        expected[0].id = results[0].id;
-        expect(results).toEqual(expected);
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, false, 'Age is required.');
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
       })
       .then(() => {
-        obj = { prop: null };
-        rules = ValidationRules.ensure('fullName').email().rules;
-        return validator.validateProperty(obj, 'prop', rules);
+        prop = 'city';
+        rules = ValidationRules.ensure(prop).required().rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
       })
       .then(results => {
-        const expected = [new ValidateResult(rules[0][0], obj, 'prop', true, null)];
-        expected[0].id = results[0].id;
-        expect(results).toEqual(expected);
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, false, 'City is required.');
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
       })
-      .then(done);
+      .then(() => {
+        prop = 'phone';
+        rules = ValidationRules.ensure(prop).required().rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
+      })
+      .then(results => {
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, false, 'Phone is required.');
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
+      })
+      .then(() => {
+        sut.canidate.phone = '8591112222'
+        rules = ValidationRules.ensure(prop).matches(/\d{3}-\d{3}-\d{4}/).rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
+      })
+      .then(results => {
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, false, 'Phone is not correctly formatted.');
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
+      })
+      .then(() => {
+        sut.canidate.phone = '(859) 111-2222'
+        rules = ValidationRules.ensure(prop).matches(/\d{3}-\d{3}-\d{4}/).rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
+      })
+      .then(results => {
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, false, 'Phone is not correctly formatted.');
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
+      })
+      .then(() => {
+        sut.canidate.phone = '859-111-2222'
+        rules = ValidationRules.ensure(prop).matches(/\d{3}-\d{3}-\d{4}/).rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
+      })
+      .then(results => {
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, true, null);
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
+      })
+      .then(() => {
+        prop = 'email'
+        sut.canidate.email = 'foo@bar.com'
+        rules = ValidationRules.ensure(prop).email().rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
+      })
+      .then(results => {
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, true, null);
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
+      })
+      .then(() => {
+        sut.canidate.email = 'foo'
+        rules = ValidationRules.ensure(prop).email().rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
+      })
+      .then(results => {
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, false, 'Email is not a valid email.');
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
+      })
+      .then(() => {
+        prop = 'citizen';
+        rules = ValidationRules.ensure(prop).required().rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
+      })
+      .then(results => {
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, false, 'Citizen is required.');
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
+      })
+      .then(() => {
+        prop = 'canWork';
+        rules = ValidationRules.ensure(prop).required().rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
+      })
+      .then(results => {
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, false, 'Can Work is required.');
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
+      })
+      .then(() => {
+        prop = 'canDrive';
+        rules = ValidationRules.ensure(prop).required().rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
+      })
+      .then(results => {
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, false, 'Can Drive is required.');
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
+      })
+      .then(() => {
+        prop = 'hasFelony';
+        rules = ValidationRules.ensure(prop).required().rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
+      })
+      .then(results => {
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, false, 'Has Felony is required.');
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
+      })
+      .then(() => {
+        sut.canidate.hasFelony = true;
+        prop = 'felonies';
+        rules = ValidationRules.ensure(prop).required().when(a => a.hasFelony).rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
+      })
+      .then(results => {
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, false, 'Felonies is required.');
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
+      })
+      .then(() => {
+        sut.canidate.hasFelony = false;
+        rules = ValidationRules.ensure(prop).required().when(a => a.hasFelony).rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
+      })
+      .then(results => {
+        expect(results).toEqual([]);
+      })
+      .then(() => {
+        prop = 'experience';
+        rules = ValidationRules.ensure(prop).required().rules;
+        return validator.validateProperty(sut.canidate, prop, rules);
+      })
+      .then(results => {
+        const expected = new ValidateResult(rules[0][0], sut.canidate,
+          prop, false, 'Experience is required.');
+        expected.id = results[0].id
+        expect(results[0]).toEqual(expected);
+        done();
+      })
   });
 
   it('configures the http client with std configuration', () => {
@@ -209,4 +353,6 @@ describe('the Employment module', () => {
       expect(http.resolve).toBeDefined();
     });
   });
+  
+
 });
