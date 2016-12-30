@@ -194,6 +194,17 @@ body {
     width: auto;
     padding: 7px 15px;
   }
+
+  .iframe {
+    width: 100px;
+  }
+
+  /* my custom row center classes may be doing something funny on smaller
+   * devices because the cards do not look centered. this fixes it
+   * */
+  .row-centered {
+    margin-left: 0;
+  }
 }
 
 /********* Carousel ************/
