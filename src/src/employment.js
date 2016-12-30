@@ -4,14 +4,14 @@ import { sendto } from './env';
 import Canidate from './canidate.js';
 import 'fetch';
 import {ValidationControllerFactory, ValidationRules} from 'aurelia-validation';
-import {BootstrapFormRenderer} from './resources/renderers/bootstrap-form-renderer'
+import {BootstrapFormRenderer} from './resources/renderers/bootstrap-form-renderer';
 
 @inject(HttpClient, ValidationControllerFactory)
 export class Employment {
 
   constructor(http, controllerFactory) {
-    this.view = "./employment-form.html";
-    this.helpMsg = null
+    this.view = './employment-form.html';
+    this.helpMsg = null;
     this.loading = false;
     this.canidate = new Canidate();
     this.controller = controllerFactory.createForCurrentScope();
@@ -21,7 +21,7 @@ export class Employment {
     http.configure(config => {
       config
         .useStandardConfiguration()
-        .withBaseUrl(`https:////formspree.io/`);
+        .withBaseUrl('https:////formspree.io/');
     });
 
     ValidationRules
@@ -58,16 +58,16 @@ export class Employment {
 
   _post() {
     return this._http.fetch(sendto(), {
-      method: `POST`,
+      method: 'POST',
       body: json(this.canidate)
     }).then(response => response.json())
       .then(data => {
         this.helpMsg = null;
-        this.view = "./thanks.html";
+        this.view = './thanks.html';
         return data;
       }).catch(err => {
-        this.helpMsg = `there was an error submitting your form. ` + 
-          `Please try again or contact us direct from the Contact Page`;
+        this.helpMsg = 'there was an error submitting your form. ' +
+          'Please try again or contact us direct from the Contact Page';
         return err;
       });
   }
