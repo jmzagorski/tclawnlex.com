@@ -82,14 +82,14 @@ body {
   animation: fadeIn 1s;
 }
 
-.card {
+.picture {
   overflow: hidden;
   position: relative;
   padding: 0;
   margin-bottom: 32px;
 }
 
-.card .content {
+.picture .content {
   color: white;
   text-shadow: 0 0 6px rgba(0, 0, 0, .5);
   font-size: 18px;
@@ -97,13 +97,13 @@ body {
   margin: auto;
 }
 
-.card .container-fluid {
+.picture .container-fluid {
   position: relative;
   z-index: 100;
   float: left;
 }
 
-.card .container-fluid img {
+.picture .container-fluid img {
   width: 300px;
   height: 300px;
   -webkit-border-radius: 50%;
@@ -298,7 +298,7 @@ body {
 }
 
 /********* Services ************/
-.service {
+.card {
   border-top: 10px solid rgb(156, 209, 121);
   margin-right: 20px;
   color: black;
