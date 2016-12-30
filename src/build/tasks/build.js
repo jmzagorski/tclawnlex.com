@@ -12,6 +12,7 @@ var browserSync = require("browser-sync");
 var htmlmin = require("gulp-htmlmin");
 var cleanCSS = require('gulp-clean-css');
 var rename = require('gulp-rename');
+var autoprefixer = require('gulp-autoprefixer');
 
 // transpiles changed es6 files to SystemJS format
 // the plumber() call prevents "pipe breaking" caused
@@ -46,6 +47,10 @@ gulp.task("build-css", function() {
 gulp.task("min-style", function() {
   return gulp.src(paths.style)
     .pipe(cleanCSS())
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
     .pipe(rename("styles.min.css"))
     .pipe(gulp.dest(paths.styleRoot))
     .pipe(browserSync.stream());
