@@ -1,3 +1,13 @@
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/jmzagorski/tclawnlex.com/compare/v1.0.0...v1.0.1) (2016-12-31)
+
+
+### Bug Fixes
+
+* **bootstrapformrenderer:** validation did not work in IE ([9cc501f](https://github.com/jmzagorski/tclawnlex.com/commit/9cc501f))
+
+
+
 <a name="1.0.0"></a>
 # 1.0.0 (2016-12-30)
 
