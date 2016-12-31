@@ -1,3 +1,4 @@
+import '../../polyfills';
 import {
   RenderInstruction,
   ValidateResult
@@ -23,7 +24,7 @@ export class BootstrapFormRenderer {
       return;
     }
 
-    const formGroup = element.closest('.form-group');
+    const formGroup = element.querySelector('.form-group') || element.closest('.form-group')
     if (!formGroup) {
       return;
     }
@@ -44,7 +45,7 @@ export class BootstrapFormRenderer {
       return;
     }
 
-    const formGroup = element.closest('.form-group');
+    const formGroup = element.querySelector('.form-group') || element.closest('.form-group')
     if (!formGroup) {
       return;
     }
