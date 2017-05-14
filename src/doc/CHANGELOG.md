@@ -1,3 +1,18 @@
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/jmzagorski/tclawnlex.com/compare/v1.1.0...v1.2.1) (2017-05-14)
+
+
+### Bug Fixes
+
+* **css:** revert text size for welcome p and h2 ([3a64073](https://github.com/jmzagorski/tclawnlex.com/commit/3a64073))
+
+
+### Features
+
+* **images:** add new gallery and home page image ([ece9679](https://github.com/jmzagorski/tclawnlex.com/commit/ece9679))
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/jmzagorski/tclawnlex.com/compare/v1.1.0...v1.2.0) (2017-05-14)
 
