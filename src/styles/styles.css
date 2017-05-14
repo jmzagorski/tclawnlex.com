@@ -45,7 +45,7 @@ body {
 
 #welcome{
   background:  linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
-    url('../images/mulch-job.jpg') no-repeat center center fixed;
+    url('../images/2017-backyard-firepit.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -56,14 +56,22 @@ body {
   background-attachment: fixed;
 }
 
+#welcome h2 {
+  font-size: 50px;
+}
+
 #welcome p {
   line-height: 150%;
-  font-size: 1.5em;
+  font-size: 1.8em;
 }
 
 #welcome a {
   font-family: 'Source Sans Pro', sans-serif;
   color: white;
+}
+
+#welcome div.col-md-offset-6 {
+  background:  linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))
 }
 
 .loader {
