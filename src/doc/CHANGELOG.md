@@ -1,3 +1,13 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/jmzagorski/tclawnlex.com/compare/v1.1.0...v1.2.0) (2017-05-14)
+
+
+### Features
+
+* **images:** add new gallery and home page image ([ece9679](https://github.com/jmzagorski/tclawnlex.com/commit/ece9679))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/jmzagorski/tclawnlex.com/compare/v1.0.1...v1.1.0) (2017-02-27)
 
