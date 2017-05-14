@@ -56,13 +56,9 @@ body {
   background-attachment: fixed;
 }
 
-#welcome h2 {
-  font-size: 50px;
-}
-
 #welcome p {
   line-height: 150%;
-  font-size: 1.8em;
+  font-size: 1.5em;
 }
 
 #welcome a {
