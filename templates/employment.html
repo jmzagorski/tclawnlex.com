@@ -1,0 +1,200 @@
+{% extends "index.html" %} {% block content %}
+<form id="employmentform" class="form-horizontal">
+    <input type="hidden" name="_subject" value="TCLawn Care Employment" />
+    <input type="text" name="_gotcha" style="display: none" />
+    <fieldset>
+        <div class="field">
+            <label for="fullname" form="fullname" class="label">
+                Full Name
+            </label>
+            <div class="control has-icons-left">
+                <input
+                    id="fullname"
+                    name="person_name"
+                    class="input"
+                    type="text"
+                    placeholder="Full Name"
+                    required
+                />
+                <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="age" class="label">Age</label>
+            <div class="control has-icons-left">
+                <input id="age" name="age" class="input" type="number" required />
+                <span class="icon is-small is-left">
+                    <i class="fas fa-birthday-cake"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="city" class="label">Kentucky City</label>
+            <div class="control has-icons-left">
+                <input
+                    id="city"
+                    name="city"
+                    class="input"
+                    type="text"
+                    placeholder="Kentucky City"
+                    required
+                />
+                <span class="icon is-small is-left">
+                    <i class="fas fa-city"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="phone" class="label">Phone</label>
+            <div class="control has-icons-left">
+                <input
+                    id="phone"
+                    name="phone"
+                    class="input"
+                    type="tel"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    placeholder="859-555-5555"
+                    required
+                />
+                <span class="icon is-small is-left">
+                    <i class="fas fa-phone"></i>
+                </span>
+            </div>
+            <p class="help">Format must be ###-###-####</p>
+        </div>
+
+        <div class="field">
+            <label for="email" class="label">E-Mail</label>
+            <div class="control has-icons-left">
+                <input
+                    id="email"
+                    name="email"
+                    class="input"
+                    type="email"
+                    placeholder="Email"
+                    required
+                />
+                <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="field">
+            Are you an American Citizen?
+            <div class="control">
+                <label class="radio">
+                    <input name="is_citizen" type="radio" value="yes" required />
+                    Yes
+                </label>
+                <label class="radio">
+                    <input name="is_citizen" type="radio" value="no" required />
+                    No
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            Are you authorized to <strong>CURRENTLY</strong>
+            work in the United States?
+            <div class="control">
+                <label class="radio">
+                    <input name="can_work" type="radio" required />
+                    Yes
+                </label>
+                <label class="radio">
+                    <input name="can_work" type="radio" required />
+                    No
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            Do you have a valid United States driver license?
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="can_drive" required />
+                    Yes
+                </label>
+                <label class="radio">
+                    <input type="radio" name="can_drive" required />
+                    No
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            Have you ever been convicted of a felony?
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="has_felony" required />
+                    Yes
+                </label>
+                <label class="radio">
+                    <input type="radio" name="has_felony" required />
+                    No
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="explain-felony" class="label"
+                >If yes, please explain:</label
+            >
+            <div class="control">
+                <textarea
+                    id="explain-felony"
+                    name="explain_felony"
+                    class="textarea"
+                    placeholder="Textarea"
+                ></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="moving-violations" class="label"
+                >Please list any moving violations in the last 3 years</label
+            >
+            <div class="control">
+                <textarea
+                    id="moving-violations"
+                    name="moving_violations"
+                    class="textarea"
+                    placeholder="Textarea"
+                ></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="experience" class="label"
+                >Please briefly describe any prior work experience</label
+            >
+            <div class="control">
+                <textarea
+                    id="experience"
+                    name="work_experience"
+                    class="textarea"
+                    placeholder="Textarea"
+                    required
+                ></textarea>
+            </div>
+            <p class="help">
+                **You can drag the bottom right corner of the larger text areas
+                to make more room to type
+            </p>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-link">Submit</button>
+            </div>
+             <p class="form__submit--response help"></p>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}

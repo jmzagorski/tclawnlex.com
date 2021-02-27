@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+
+{% block content %}
+{% set data = load_data(path="content/contact.csv") %}
+{% for d in data.records %}
+{% if loop.index is odd %}
+<div class="columns">
+{% endif %}
+<div class="column">
+    <a href="{{ d.2 }}">
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <span class="icon">
+                <i class="fa-2x {{ d.0 }}"></i>
+            </span>
+          </div>
+          <div class="media-content">
+              <p class="title is-4">{{ d.1 | safe }}</p>
+              <p class="subtitle is-6">{{ d.3 | safe}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </a>
+</div>
+{% if loop.index is even %}
+</div>
+{% endif %}
+{% endfor %}
+</div>
+
+    <div class="iframe">
+      <iframe height="500" scrolling="yes" allowtransparency="true"
+        frameborder="0" style="border:none;overflow:auto;background:white;"
+        src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FTCLawnCareLLC&colorscheme=light&show_faces=true&border_color&stream=true&header=true&height=500"></iframe>
+    </div>
+{% endblock %}
